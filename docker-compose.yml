@@ -1,5 +1,5 @@
 version : "3.0"
 services:
   teamHW6:
-    image : ${DOCKER_USR}/ossp_week9
+    image : ${DOCKER_USR}/week12
     build : .
