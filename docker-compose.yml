@@ -1,5 +1,7 @@
 version : "3.0"
 services:
-  python-app: # 서비스명
+  teamHW6:
     image : ${DOCKER_USR}/ossp_week9
     build : .
+    ports:
+     -'80:80'
