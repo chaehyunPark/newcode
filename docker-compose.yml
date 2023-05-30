@@ -1,0 +1,5 @@
+version : "3.0"
+services:
+python-app: # 서비스명
+image : ${DOCKER_USR}/ossp_week9:1.0
+build : .
