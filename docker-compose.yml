@@ -1,5 +1,5 @@
 version : "3.0"
 services:
   teamHW6:
-    image : ${DOCKER_USR}/week12
+    image : ${DOCKER_USR}/week12:${BUILD_NUMBER}
     build : .
