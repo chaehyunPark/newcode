@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>박혜림
+  </title>
+  <style>
+    .text_b {
+      font-weight: 900;
+    }
+  </style>
+  <script>
+    function inf_submit() {
+      const name = document.getElementsByClassName("Required")[0].value;
+      const snumber = document.getElementsByClassName("Required")[1].value;
+      const major = document.getElementsByClassName("Required")[2].value;
+      const email = document.getElementsByClassName("Required")[3].value;
+      const email_domain = document.getElementsByClassName("Required")[4].value;
+
+      if (!name || !snumber || !major || !email || email_domain == '') {
+        alert("필수 정보를 다 입력해 주세요.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <form action="result" method="POST" onsubmit="return inf_submit()">
+    <!-- submit 버튼을 누를 시 post요청을 보냄-->
+    <!-- post요청: 데이터를 나열하도록 또는 포스팅한다.-->
+    <p class="text_b">* Name <input class="Required" type="text" name="Name"></p>
+    <p class="text_b">* Student Number <input class="Required" type="text" name="Student Number"></p>
+    <p class="text_b">* Major <input class="Required" type="text" name="Major"></p>
+    <p class="text_b">* Email <input class="Required" type="text" name="Email"> @
+      <select class="Required" name="Email_domain">
+        <option value="" selected disabled>선택</option>
+        <option value="naver.com" >naver.com</option>
+        <option value="hanmai.net">hanmai.net</option>
+        <option value="gmail.com">gmail.com</option>
+      </select>
+    </p>
+
+    <p>Gender</p>
+    <input type="radio" id="male" name="Gender" value="male"><span>Male</span>
+    <input type="radio" id="female" name="Gender" value="female"><span>Female</span>
+
+    <!--check된 값만 py로 옮겨야 함-->
+    <p>Programming Language</p>
+    <input type="checkbox" name="Pro_lang[]" value="Python"><span>Python</span>
+    <input type="checkbox" name="Pro_lang[]" value="Java"><span>Java</span>
+    <input type="checkbox" name="Pro_lang[]" value="HTML"><span>HTML</span>
+    <input type="checkbox" name="Pro_lang[]" value="C++"><span>C++</span>
+
+    <!-- name 속성: 제출된 데이터를 구분하기 위함-->
+    <p>
+      <button type="submit" name="submit" value="submit">submit</button>
+    </p>
+  </form>
+</body>
+
+</html>

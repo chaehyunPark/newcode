@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>result page</title>
+  <script>
+
+    function Delete_row() {
+        const D_checkbox = document.getElementsByTagName("input");
+        var rowsToDelete = [];
+
+        for (var i=0; i < D_checkbox.length; i++) {
+          if (D_checkbox[i].checked) {
+            // check된 행
+            const tr = D_checkbox[i].parentNode.parentNode;
+            if (tr.tagName === "TR") {
+              // check된 행의 학번(고유번호여서 key로 사용)
+              const student_number = tr.getElementsByTagName("td")[1].innerText;
+              fetch("/delete", {
+                method: "POST",
+                // json 형태의 문자열로 변환
+                body: JSON.stringify({ student_number: student_number }),
+                // 데이터가 JSON 형식으로 인코딩 됨
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }).then(function () {
+                // 행 제거
+                tr.parentNode.removeChild(tr);
+              });
+            }
+          }
+        }
+    }
+
+    // 추가하기 위한 main page로 이동
+    function Add_row() {
+      window.location.href = "/";
+    }
+
+    // 초기화 하고 main page로 이동
+    function Home() {
+        // 초기화 해야 하기 때문에, 따로 링크를 fetch할 필요가 있음
+        fetch("/home").then(function () {
+          window.location.href = "/";
+        });
+    }
+
+  </script>
+</head>
+
+<body>
+  <table border="1">
+    <tr>
+      <th>이름</th>
+      <th>학번</th>
+      <th>전공</th>
+      <th>이메일</th>
+      <th>성별</th>
+      <th>프로그래밍 언어</th>
+    </tr>
+    {% for data in result %}
+    <tr>
+      <td>{{ data['Name'] }}</td>
+      <td>{{ data['Student Number'] }}</td>
+      <td>{{ data['Major'] }}</td>
+      <td>{{ data['Email'] }}</td>
+      <td>{{ data['Gender'] }}</td>
+      <td>{{ data['Programing Language'] }}</td>
+      <td><input type="checkbox"></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <p>
+    <button onclick="Delete_row()">Delete row</button>
+    <button onclick="Add_row()">Add Row</button>
+  </p>
+  <p><button onclick="Home()">Home</button></p>
+</body>
+
+</html>

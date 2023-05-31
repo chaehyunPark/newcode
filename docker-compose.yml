@@ -3,3 +3,5 @@ services:
   teamHW6:
     image : ${DOCKER_USR}/week12:${BUILD_NUMBER}
     build : .
+    ports:
+     - "80:80"
